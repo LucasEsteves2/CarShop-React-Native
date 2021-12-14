@@ -16,7 +16,7 @@ const BottomTabNavigator = () => {
         showLabel: false,
       }}>
       <Tab.Screen
-        name="Home"
+        name="Homezin"
         component={Home}
         options={{
           tabBarIcon: ({ color }) => (
