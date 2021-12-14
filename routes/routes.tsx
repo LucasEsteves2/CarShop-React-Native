@@ -2,7 +2,6 @@
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import { Login } from "../src/screens/login";
-import { Home } from "../src/screens/home";
 import BottomTabNavigator from "../navigation/tabNavigator";
 
 const Stack = createStackNavigator();

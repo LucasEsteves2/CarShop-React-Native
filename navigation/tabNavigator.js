@@ -13,7 +13,7 @@ const BottomTabNavigator = () => {
 
   return (
     <Tab.Navigator
-    tabBarOptions={{
+    screenOptions={{
       // evitando que o tab bar fique em cima do input
       keyboardHidesTabBar: true,
 
@@ -45,7 +45,7 @@ const BottomTabNavigator = () => {
         tabBarIcon: ({ size, focused }) => {
           return (
             <Ionicons
-              name="md-heart"
+              name="md-home"
               size={size}
             />
           );
@@ -55,13 +55,13 @@ const BottomTabNavigator = () => {
 
 
   <Tab.Screen    
-    name="Espoerts"
+    name="Produtos"
     component={Home}
     options={{
       tabBarIcon: ({ size, focused }) => {
         return (
           <MaterialCommunityIcons
-            name="trophy-outline"
+            name="tags  q1"
             size={size}
            
           />
