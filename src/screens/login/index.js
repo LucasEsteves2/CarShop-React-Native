@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../../service/api";
@@ -17,14 +18,14 @@ export function Login() {
   const [senha, setSenha] = useState();
   const [btn, setBtn] = useState("");
   const navigation = useNavigation();
+  var data = { email: login, senha: senha };
 
-  var data = { email: login, senha: senha}
   //verificando se usuario existe na api
   async function entrar() {
     try {
-      var { headers } = await api.post("/login",data)
+      var { headers } = await api.post("/login", data);
       alert("Bem vindo " + login);
-
+      salvarStorage(data);
       navigation.navigate("Home");
     } catch {
       alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");
@@ -63,13 +64,21 @@ export function Login() {
           <Text style={styles.btntext}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity  style={styles.cadastro}  onPress={entrar}>
+        <TouchableOpacity style={styles.cadastro} onPress={entrar}>
           <Text style={styles.btntext}>CADASTRAR</Text>
         </TouchableOpacity>
-
       </View>
     </View>
   );
+}
+
+async function salvarStorage(data) {
+  try {
+    await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
+  } catch (error) {
+    console.log(error);
+    Alert.alert("Não foi possivel Salvar!!");
+  }
 }
 
 const styles = StyleSheet.create({
@@ -118,10 +127,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  cadastro:{
-    paddingTop:25,
+  cadastro: {
+    paddingTop: 25,
     alignItems: "center",
-
-
-  }
+  },
 });

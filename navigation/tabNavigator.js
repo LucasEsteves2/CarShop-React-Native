@@ -60,10 +60,9 @@ const BottomTabNavigator = () => {
     options={{
       tabBarIcon: ({ size, focused }) => {
         return (
-          <MaterialCommunityIcons
-            name="tags  q1"
-            size={size}
-           
+          <Ionicons
+              name="md-home"
+              size={size}
           />
         );
       },
