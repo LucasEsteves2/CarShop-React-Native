@@ -20,7 +20,6 @@ export function Login() {
   const navigation = useNavigation();
   var dados = { email: login, senha: senha };
 
-
   //verificando se usuario existe na api
   async function entrar() {
     try {
@@ -68,15 +67,13 @@ export function Login() {
           <Text style={styles.btntext}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cadastro} onPress={entrar}>
+        <TouchableOpacity style={styles.cadastro} onPress={()=>navigation.navigate("Cadastrar")}>
           <Text style={styles.btntext}>CADASTRAR</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
