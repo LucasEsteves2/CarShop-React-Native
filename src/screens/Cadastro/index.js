@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { api } from "../../service/api";
+import logozita from "../../imagens/img2.png";
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
@@ -53,7 +54,7 @@ export default function Cadastro() {
   return (
     <View style={styles.container}>
       <View style={styles.imageview}>
-        <Image style={styles.imagem} />
+        <Image source={logozita}style={styles.imagem} />
       </View>
 
       <View>
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
 
     width: 180,
-    height: 90,
+    height: 150,
   },
   imageview: {
     alignItems: "center",
