@@ -19,12 +19,10 @@ export function Home() {
   function logout()
 {
   navigation.navigate("Login");
-
 }
   return (
     <>
       <Text>Bem vindo{usuario.email}</Text>
-
       <Button title="Deslogar" onPress={logout}> </Button>
     </>
   );
