@@ -20,9 +20,12 @@ export default function Cadastro() {
 
   async function cadastrar() {
     //validando tamanho dos formulario
-    if (!nome.trim() || !email.trim() || !senha.trim() || nome.length < 3) {
-      if (nome.length < 3) {
+    if (!nome.trim() || !email.trim() || !senha.trim() || nome.length < 5|| nome.length < 5) {
+      if (nome.length < 5) {
         modalAlert("O nome deve possuir mais de 5 caracteres.");
+      } 
+      if (senha.length < 5) {
+        modalAlert("A senha deve possuir mais de 5 caracteres.");
       } else {
         modalAlert("Preencha todos os campos requeridos!!");
       }
@@ -95,6 +98,7 @@ export default function Cadastro() {
     </View>
   );
 }
+
 
 function modalAlert(msg) {
   Alert.alert("#Error404", msg, [

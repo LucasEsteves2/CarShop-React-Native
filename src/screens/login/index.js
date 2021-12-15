@@ -22,16 +22,20 @@ export function Login() {
 
   //verificando se usuario existe na api
   async function entrar() {
-    try {
-      await api.post("/login", dados);
-      //pegando todos os dados do usuario (nome,cpf ,etc..)
-      var { data } = await api.get(`/clientes/email?value=${login}`);
-      //salvando dados localmente no async
-      await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
-      navigation.navigate("Home");
-     
-    } catch {
-      alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");
+    if (!login.trim() || !senha.trim() ) {
+      modalAlert("Preencha todos os campos requeridos!!");
+    }
+     else {
+      try {
+        await api.post("/login", dados);
+        //pegando todos os dados do usuario (nome,cpf ,etc..)
+        var { data } = await api.get(`/clientes/email?value=${login}`);
+        //salvando dados localmente no async
+        await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
+        navigation.navigate("Home");
+      } catch {
+        modalAlert("USUARIO INVALIDO!!");
+      }
     }
   }
 
@@ -67,12 +71,21 @@ export function Login() {
           <Text style={styles.btntext}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cadastro} onPress={()=>navigation.navigate("Cadastrar")}>
+        <TouchableOpacity
+          style={styles.cadastro}
+          onPress={() => navigation.navigate("Cadastrar")}
+        >
           <Text style={styles.btntext}>CADASTRAR</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
+}
+
+function modalAlert(msg) {
+  Alert.alert("#Error404", msg, [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
 }
 
 const styles = StyleSheet.create({
@@ -119,7 +132,6 @@ const styles = StyleSheet.create({
   },
   imageview: {
     alignItems: "center",
-  
   },
 
   cadastro: {
