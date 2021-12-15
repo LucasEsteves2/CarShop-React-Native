@@ -14,8 +14,8 @@ import logozita from "../../imagens/img.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Login() {
-  const [login, setLogin] = useState();
-  const [senha, setSenha] = useState();
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
   const [btn, setBtn] = useState("");
   const navigation = useNavigation();
   var dados = { email: login, senha: senha };
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginTop: 3,
     fontSize: 10,
+
   },
   butao: {
     backgroundColor: "#A370F7",
