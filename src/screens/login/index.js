@@ -18,14 +18,18 @@ export function Login() {
   const [senha, setSenha] = useState();
   const [btn, setBtn] = useState("");
   const navigation = useNavigation();
-  var data = { email: login, senha: senha };
+  var dados = { email: login, senha: senha };
+
 
   //verificando se usuario existe na api
   async function entrar() {
     try {
-      var { headers } = await api.post("/login", data);
+      await api.post("/login", dados);
+      //pegando todos os dados do usuario (nome,cpf ,etc..)
+      var { data } = await api.get(`/clientes/email?value=${login}`);
+      //salvando dados localmente no async
+      await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
       alert("Bem vindo " + login);
-      salvarStorage(login);
       navigation.navigate("Home");
     } catch {
       alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");
@@ -72,16 +76,7 @@ export function Login() {
   );
 }
 
-async function salvarStorage(login) {
-  try {
-    //pegando todos so dados do usuario
-    var { data } = await api.get(`/clientes/email?value=${login}`);
-    await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
-  } catch (error) {
-    console.log(error);
-    Alert.alert("Não foi possivel Salvar!!");
-  }
-}
+
 
 const styles = StyleSheet.create({
   container: {
