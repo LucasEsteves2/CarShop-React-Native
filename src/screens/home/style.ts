@@ -9,10 +9,9 @@ export const Header = styled.View`
 width:100%;
 height:113px;
 
-background-color:#19191C;
+background-color:#613FA0;
 justify-content:flex-end;
 
-padding:32px 24px;
 `;
 export const HeaderConteudo = styled.View`
 flex-direction:row;
@@ -21,7 +20,10 @@ justify-content:space-between;
 
 `;
 export const ProdutosTotal = styled.Text`
+margin-top:20px;
+margin-right:30px;
 font-size: ${RFValue(13)}px;
 color:white;
 `;
+
 

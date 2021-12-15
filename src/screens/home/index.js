@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Text, StatusBar, Image } from "react-native";
+import { StyleSheet, Alert, Button, Text, StatusBar, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { Container, Header, ProdutosTotal,HeaderConteudo } from "./style";
+import { Container, Header, ProdutosTotal, HeaderConteudo, Imagita } from "./style";
 import { RFValue } from "react-native-responsive-fontsize";
-import Logo from "../../../assets/logomarca.png";
+import Logo from "../../imagens/logobar.png";
 
 export function Home() {
   const navigation = useNavigation();
@@ -35,13 +35,16 @@ export function Home() {
 
           <HeaderConteudo>
             <Image
+              style={styles.image}
               source={Logo}
               width={RFValue(108)}
-              height={RFValue(12)}
-            />
+              height={RFValue(12)} />
+
             <ProdutosTotal>
-             produtos:
+              produtos:
             </ProdutosTotal>
+
+
           </HeaderConteudo>
         </Header>
       </Container>
@@ -52,3 +55,10 @@ export function Home() {
 
 
 
+const styles = StyleSheet.create({
+  image: {
+    width: 100,
+    height: 80,
+    resizeMode: 'contain'
+  },
+});
