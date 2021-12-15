@@ -29,6 +29,7 @@ export function Login() {
       //salvando dados localmente no async
       await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
       navigation.navigate("Home");
+     
     } catch {
       alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");
     }

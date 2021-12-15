@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { api } from "../../service/api";
 import logozita from "../../imagens/img2.png";
@@ -18,15 +19,13 @@ export default function Cadastro() {
   const navigation = useNavigation();
 
   async function cadastrar() {
-      //validando tamanho dos formulario
-    if (!nome.trim() || !email.trim() || !senha.trim() || nome.length<3) {
-        if(nome.length<3)
-        {
-            alert("O nome deve possuir mais de 5 caracteres.");
-        }
-        else{
-            alert("Preencha todos os campos requeridos!!");
-        }
+    //validando tamanho dos formulario
+    if (!nome.trim() || !email.trim() || !senha.trim() || nome.length < 3) {
+      if (nome.length < 3) {
+        modalAlert("O nome deve possuir mais de 5 caracteres.");
+      } else {
+        modalAlert("Preencha todos os campos requeridos!!");
+      }
     } else {
       try {
         const { data } = await api.post("/clientes", {
@@ -46,7 +45,7 @@ export default function Cadastro() {
         alert("Usuario Cadastrado com sucesso!!");
         navigation.navigate("Login");
       } catch {
-        alert("Erro ao Cadastrar usuario (informe um e-mail valido");
+        modalAlert("Erro ao Cadastrar usuario (informe um e-mail valido");
       }
     }
   }
@@ -54,7 +53,7 @@ export default function Cadastro() {
   return (
     <View style={styles.container}>
       <View style={styles.imageview}>
-        <Image source={logozita}style={styles.imagem} />
+        <Image source={logozita} style={styles.imagem} />
       </View>
 
       <View>
@@ -97,6 +96,11 @@ export default function Cadastro() {
   );
 }
 
+function modalAlert(msg) {
+  Alert.alert("#Error404", msg, [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
