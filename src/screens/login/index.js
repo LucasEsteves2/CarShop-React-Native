@@ -10,7 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../../service/api";
 import React, { useEffect, useState } from "react";
-import logozita from "../../imagens/logo.png";
+import logozita from "../../imagens/img.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Login() {
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: 40,
 
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 240,
   },
   imageview: {
     alignItems: "center",
