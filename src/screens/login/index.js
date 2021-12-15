@@ -10,7 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../../service/api";
 import React, { useEffect, useState } from "react";
-import logozita from "../../imagens/logo.png";
+import logozita from "../../imagens/img.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Login() {
@@ -18,14 +18,16 @@ export function Login() {
   const [senha, setSenha] = useState();
   const [btn, setBtn] = useState("");
   const navigation = useNavigation();
-  var data = { email: login, senha: senha };
+  var dados = { email: login, senha: senha };
 
   //verificando se usuario existe na api
   async function entrar() {
     try {
-      var { headers } = await api.post("/login", data);
-      alert("Bem vindo " + login);
-      salvarStorage(login);
+      await api.post("/login", dados);
+      //pegando todos os dados do usuario (nome,cpf ,etc..)
+      var { data } = await api.get(`/clientes/email?value=${login}`);
+      //salvando dados localmente no async
+      await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
       navigation.navigate("Home");
     } catch {
       alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");
@@ -64,23 +66,12 @@ export function Login() {
           <Text style={styles.btntext}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cadastro} onPress={entrar}>
+        <TouchableOpacity style={styles.cadastro} onPress={()=>navigation.navigate("Cadastrar")}>
           <Text style={styles.btntext}>CADASTRAR</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-}
-
-async function salvarStorage(login) {
-  try {
-    //pegando todos so dados do usuario
-    var { data } = await api.get(`/clientes/email?value=${login}`);
-    await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
-  } catch (error) {
-    console.log(error);
-    Alert.alert("Não foi possivel Salvar!!");
-  }
 }
 
 const styles = StyleSheet.create({
@@ -120,13 +111,14 @@ const styles = StyleSheet.create({
   },
   imagem: {
     justifyContent: "center",
-    marginVertical: 40,
+    marginVertical: 20,
 
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 240,
   },
   imageview: {
     alignItems: "center",
+  
   },
 
   cadastro: {
