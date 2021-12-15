@@ -28,7 +28,6 @@ export function Login() {
       var { data } = await api.get(`/clientes/email?value=${login}`);
       //salvando dados localmente no async
       await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
-      alert("Bem vindo " + login);
       navigation.navigate("Home");
     } catch {
       alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");

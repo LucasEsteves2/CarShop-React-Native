@@ -27,63 +27,110 @@ export default function Cadastro(){
                 senha: senha,
                 telefone1: '22457858'
             });
+
+            alert("Usuario Cadastrado com sucesso!!")
         } catch {
-           alert('deu merda')
+           alert('Erro ao Cadastrar usuario (informe um CPF valido!!')
         }
     }
+    
+  return (
+    <View style={styles.container}>
+      <View style={styles.imageview}>
+        <Image  style={styles.imagem} />
+      </View>
+
+      <View>
+        <Text style={styles.title}>Nome:</Text>
+        <TextInput
+          onChangeText={setNome}
+          style={styles.input}
+          placeholder="Usuario"
+          placeholderTextColor="#C3C3C3"
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <Text style={styles.title}>E-mail:</Text>
+        <TextInput
+          onChangeText={setEmail}
+          style={styles.input}
+          placeholder="E-mail"
+          placeholderTextColor="#C3C3C3"
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <Text style={styles.title}>Senha:</Text>
+        <TextInput
+          onChangeText={setSenha}
+          style={styles.input}
+          placeholder="Senha"
+          secureTextEntry={true}
+          placeholderTextColor="#C3C3C3"
+        />
+      </View>
+
+      <View>
+        <TouchableOpacity style={styles.butao} onPress={cadastrar}>
+          <Text style={styles.btntext}>Cadastrar</Text>
+        </TouchableOpacity>
         
-    return(
-        <View style={styles.container}> 
 
-           <StatusBar hidden />
-
-           <Image style={{width:300, height:100, marginBottom: 30}}  
-                  source={require('../../../assets/splash.png')}/>
-
-           <TextInput placeholder="Seu Nome" 
-                      style={styles.TextInput}  
-                      onChangeText={text=> setNome(text)}/>
-
-           <TextInput placeholder="Seu E-mail" 
-                      style={styles.TextInput}  
-                      onChangeText={text=> setEmail(text)}/>
-
-           <TextInput secureTextEntry={true} placeholder="Sua Senha" 
-                      style={styles.TextInput}  
-                      onChangeText={text=> setSenha(text)} />
-
-           <TouchableOpacity style={styles.btnCadastro}  onPress={cadastrar} >
-               <Text style={{color:'white', textAlign:'center'}}>Cadastrar</Text>
-           </TouchableOpacity>
-
-        </View>
-    );
+      </View>
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor: '#202020',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#613FA0",
+    paddingHorizontal: 30,
+    paddingVertical: 70,
+  },
+  senha: {
+    paddingVertical: 20,
+  },
+  title: {
+    color: "#FFFFFF",
+    fontSize: 9,
+    fontWeight: "bold",
+  },
+  btntext: {
+    fontSize: 11,
+    color: "#FFFFFF",
+  },
 
-    TextInput: {
-        width: '100%',
-        height: 40,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        paddingLeft: 10,
-        marginBottom: 10
-    },
+  input: {
+    backgroundColor: "#FFFFFF",
+    color: "black",
+    padding: 9,
+    borderRadius: 7,
+    marginTop: 3,
+    fontSize: 10,
+  },
+  butao: {
+    backgroundColor: "#A370F7",
+    padding: 10,
+    borderRadius: 7,
+    alignItems: "center",
+    marginTop: 3,
+  },
+  imagem: {
+    justifyContent: "center",
+    marginVertical: 20,
 
-    btnCadastro: {
-        width: '70%',
-        height: 40,
-        backgroundColor: '#7b42f5',
-        borderRadius: 20,
-        justifyContent: 'center'
-    }
-})
+    width: 180,
+    height: 90,
+  },
+  imageview: {
+    alignItems: "center",
+  
+  },
+
+  cadastro: {
+    paddingTop: 25,
+    alignItems: "center",
+  },
+});
