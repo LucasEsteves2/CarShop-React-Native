@@ -112,13 +112,14 @@ const styles = StyleSheet.create({
   },
   imagem: {
     justifyContent: "center",
-    marginVertical: 40,
+    marginVertical: 20,
 
     width: 180,
     height: 240,
   },
   imageview: {
     alignItems: "center",
+  
   },
 
   cadastro: {
