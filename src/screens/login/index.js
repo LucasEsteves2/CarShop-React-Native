@@ -25,7 +25,7 @@ export function Login() {
     try {
       var { headers } = await api.post("/login", data);
       alert("Bem vindo " + login);
-      salvarStorage();
+      salvarStorage(login);
       navigation.navigate("Home");
     } catch {
       alert("USUARIO INVALIDO(NAO FOI ENCONTRADO NA API)!!");
@@ -72,10 +72,10 @@ export function Login() {
   );
 }
 
-async function salvarStorage() {
+async function salvarStorage(login) {
   try {
     //pegando todos so dados do usuario
-    var { data } = await api.get(`/clientes/email?value=${username}`);
+    var { data } = await api.get(`/clientes/email?value=${login}`);
     await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
   } catch (error) {
     console.log(error);
