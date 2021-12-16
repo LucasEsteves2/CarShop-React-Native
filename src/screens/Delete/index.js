@@ -11,19 +11,19 @@ import {
   Image,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import {api} from "../../../src/service/api";
+import { api } from "../../service/api";
 
 export function Delete() {
   const [produto, setProduto] = useState({});
   const [id, setId] = useState();
 
   async function BuscarId() {
-    const { data } = await api.get(`/produtos/4`);
+    const { data } = await api.get(`produtos/${id}`);
     setProduto(data);
   }
   async function DeletarId() {
     try {
-      const response = await api.delete(`/produtos/${id}`);
+      const response = await api.delete(`produtos/${id}`);
       if (response) {
         console.log("cancelado");
       }
@@ -55,6 +55,7 @@ export function Delete() {
 
         <TextInput
           style={styles.input}
+          keyboardType='numeric'
           placeholder="Buscar"
           onChangeText={setId}
         />
@@ -63,6 +64,7 @@ export function Delete() {
       <View style={styles.botaoBuscar}>
         <TouchableOpacity onPress={BuscarId} style={styles.botao}>
           <Text style={styles.buscar}>Buscar</Text>
+          
         </TouchableOpacity>
       </View>
 
@@ -75,9 +77,7 @@ export function Delete() {
           resizeMode="contain"
           source={{ uri: produto.urlImagem }}
         />
-      </View>
-
-      <TouchableOpacity style={styles.item}>
+         <TouchableOpacity style={styles.item}>
         <Text style={{ color: "white" }}> DELETAR</Text>
         <MaterialIcons
           name="delete"
@@ -86,6 +86,9 @@ export function Delete() {
           onPress={createTwoButtonAlert}
         />
       </TouchableOpacity>
+      </View>
+
+     
     </SafeAreaView>
   );
 }
@@ -120,9 +123,8 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   item: {
-    marginTop: 70,
+    paddingBottom:20,
     alignItems: "center",
-    justifyContent: "center",
   },
   buscar: {
     color: "#fff",
