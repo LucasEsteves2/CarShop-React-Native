@@ -32,9 +32,9 @@ export default function Cadastro() {
     } else {
       try {
        await api.post("/funcionario", {
-          "email": "emaaail",
-          "nome": "noaaame",
-          "senha": "senhaaaa",
+          "email": email,
+          "nome": nome,
+          "senha": senha,
         });
         alert("Funcionario Cadastrado com sucesso!!");
         navigation.navigate("Login");
