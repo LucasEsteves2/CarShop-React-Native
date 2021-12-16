@@ -29,7 +29,7 @@ export function Login() {
       try {
         await api.post("/login", dados);
         //pegando todos os dados do usuario (nome,cpf ,etc..)
-        var { data } = await api.get(`/clientes/email?value=${login}`);
+        var { data } = await api.get(`/funcionario/email?value=${login}`);
         //salvando dados localmente no async
         await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
         navigation.navigate("Home");

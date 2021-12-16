@@ -31,21 +31,12 @@ export default function Cadastro() {
       }
     } else {
       try {
-        const { data } = await api.post("/clientes", {
-          bairro: "string",
-          cep: "25650061",
-          cidade: "string",
-          complemento: "string",
-          cpf: "13568220709",
-          email: email,
-          nome: nome,
-          nome_usuario: "string",
-          numero: "12345",
-          rua: "12345",
-          senha: senha,
-          telefone1: "22457858",
+       await api.post("/funcionario", {
+          "email": "emaaail",
+          "nome": "noaaame",
+          "senha": "senhaaaa",
         });
-        alert("Usuario Cadastrado com sucesso!!");
+        alert("Funcionario Cadastrado com sucesso!!");
         navigation.navigate("Login");
       } catch {
         modalAlert("Erro ao Cadastrar usuario (informe um e-mail valido");
