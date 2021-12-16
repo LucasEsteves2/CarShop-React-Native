@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
-import { api } from '../../service/apiSerratec';
+import { api } from '../../service/api';
 
 export function upDate() {
     const [id, setId] = useState('');

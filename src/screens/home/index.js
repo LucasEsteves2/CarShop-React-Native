@@ -20,9 +20,15 @@ export function Home() {
 {
   navigation.navigate("Login");
 }
+
+function perfil()
+{
+  navigation.navigate("Perfil");
+}
   return (
     <>
       <Text>Bem vindo{usuario.email}</Text>
+      <Button title="Perfil" onPress={perfil}> </Button> 
       <Button title="Deslogar" onPress={logout}> </Button>
     </>
   );
