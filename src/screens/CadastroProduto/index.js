@@ -6,10 +6,9 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Image,
+  Alert,
 } from "react-native";
 import { api } from "../../service/api";
-import logozita from "../../imagens/img2.png";
 
 export function Cadastrar() {
   const [descricao, setDescricao] = useState("");
@@ -28,7 +27,7 @@ export function Cadastrar() {
   async function pegarproduto() {
     try {
       await api.post("/produtos",data);
-      alert("Sucesso! Produto cadastrado!");
+      modalAlert("Produto cadastrado!");
     } catch (error) {
       alert(error.toString());
     }
@@ -77,7 +76,6 @@ export function Cadastrar() {
           placeholderTextColor="#C3C3C3"
         />
       </View>
-
       <View style={styles.senha}>
         <Text style={styles.title}>Imagen:</Text>
         <TextInput
@@ -87,7 +85,6 @@ export function Cadastrar() {
           placeholderTextColor="#C3C3C3"
         />
       </View>
-
       <View>
         <TouchableOpacity style={styles.butao} onPress={pegarproduto}>
           <Text style={styles.btntext}>Cadastrar</Text>
@@ -97,8 +94,11 @@ export function Cadastrar() {
   );
 }
 
+
+
+
 function modalAlert(msg) {
-  Alert.alert("#Error404", msg, [
+  Alert.alert("#Sucesso", msg, [
     { text: "OK", onPress: () => console.log("OK Pressed") },
   ]);
 }
