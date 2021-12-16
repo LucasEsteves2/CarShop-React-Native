@@ -22,10 +22,13 @@ export const Routes = () => {
 =======
        <Stack.Screen name="Login" component={Login} options={{headerShown:false,}}/>
          <Stack.Screen name="Editar" component={upDate} options={{headerShown:false,}}/>
-       <Stack.Screen name="Home" component={BottomTabNavigator} options={{headerShown:false,}}/>
+         <Stack.Screen name="Home" component={BottomTabNavigator} options={{headerShown:false,}}/>
          <Stack.Screen name="Cadastrar" component={Cadastro} options={{headerShown:false,}}/>
+<<<<<<< HEAD
          <Stack.Screen name="CadastrarProduto" component={Cadastrar} options={{headerShown:false,}}/>
 >>>>>>> 11e6d037f5fd5c44fb095873edbc7318498847a2
+=======
+>>>>>>> e79cc1f16cee4b67f0ed0cd9aec45d3c4aefde70
     </Stack.Navigator>
 
   );

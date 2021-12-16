@@ -7,6 +7,9 @@ import colors from '../src/styles/colors';
 
 import { Home } from '../src/screens/home';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Cadastrar } from '../src/screens/CadastroProduto';
+import { Delete } from '../src/screens/Delete';
+import { upDate } from '../src/screens/upDate';
 
 const Tab = createBottomTabNavigator();
 
@@ -57,15 +60,14 @@ const BottomTabNavigator = () => {
       }}
       />
 
-
   <Tab.Screen    
-    name="Produtos"
-    component={Home}
+    name="Adicionar Produto"
+    component={Cadastrar}
     options={{
       tabBarIcon: ({ size, focused }) => {
         return (
           <Ionicons
-              name="md-home"
+              name="md-add-circle"
               size={size}
               color={focused ? "black": colors.black}
 
@@ -74,6 +76,42 @@ const BottomTabNavigator = () => {
       },
     }}
   />
+
+
+<Tab.Screen    
+    name="Deletar Produto"
+    component={Delete}
+    options={{
+      tabBarIcon: ({ size, focused }) => {
+        return (
+          <Ionicons
+              name="md-trash"
+              size={size}
+              color={focused ? "black": colors.black}
+
+          />
+        );
+      },
+    }}
+  />
+  
+<Tab.Screen    
+    name="Editar Produto"
+    component={upDate}
+    options={{
+      tabBarIcon: ({ size, focused }) => {
+        return (
+          <Ionicons
+              name="md-create"
+              size={size}
+              color={focused ? "black": colors.black}
+// aa
+          />
+        );
+      },
+    }}
+  />
+
     </Navigator>
   );
 };
