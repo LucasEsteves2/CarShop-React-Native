@@ -9,6 +9,7 @@
       "image": "./assets/splashh.png",
       "resizeMode": "contain",
       "backgroundColor": "#613FA0"
+      
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -28,5 +29,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
+    
   }
 }

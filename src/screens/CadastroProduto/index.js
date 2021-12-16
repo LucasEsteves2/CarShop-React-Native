@@ -1,41 +1,41 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity, TextInput} from 'react-native';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Image,
+} from "react-native";
 import { api } from "../../service/api";
 import logozita from "../../imagens/img2.png";
 
 export function Cadastrar() {
-
-  const [descricao,setDescricao]=useState("");
-  const [foto,setfoto]=useState("");;
-  const [nome,setNome]=useState("");
-  const [qtdestoque,setQtdestoque]=useState("");
-  const [valor,setValor]=useState("");
-
-   async function pegarproduto(){
-     try{
-       alert("Sucesso! Produto cadastrado!")
-   const {data}= await api.post("/produtos", 
-   {   
-   desc: descricao,
-   nome: nome,
-   qtd_estoque: qtdestoque,
-   urlImagem: foto,
-   valor: valor
-  })
-
-      }catch(error){
-        alert(error.toString())
-      }
-
+  const [descricao, setDescricao] = useState("");
+  const [foto, setfoto] = useState("");
+  const [nome, setNome] = useState("");
+  const [qtdestoque, setQtdestoque] = useState("");
+  const [valor, setValor] = useState("");
+  var data = {
+    desc: descricao,
+    nome: nome,
+    qtd_estoque: qtdestoque,
+    urlImagem: foto,
+    valor: valor,
   };
- 
-  
+
+  async function pegarproduto() {
+    try {
+      await api.post("/produtos",data);
+      alert("Sucesso! Produto cadastrado!");
+    } catch (error) {
+      alert(error.toString());
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.imageview}>
-        <Image source={logozita} style={styles.imagem} />
-      </View>
-
       <View>
         <Text style={styles.title}>Nome:</Text>
         <TextInput
@@ -47,35 +47,56 @@ export function Cadastrar() {
       </View>
 
       <View style={styles.senha}>
-        <Text style={styles.title}>E-mail:</Text>
+        <Text style={styles.title}>Descricão:</Text>
         <TextInput
-          onChangeText={setEmail}
+          onChangeText={setDescricao}
           style={styles.input}
-          placeholder="E-mail"
+          placeholder="Descricão"
           placeholderTextColor="#C3C3C3"
         />
       </View>
 
       <View style={styles.senha}>
-        <Text style={styles.title}>Senha:</Text>
+        <Text style={styles.title}>Valor:</Text>
         <TextInput
-          onChangeText={setSenha}
+          onChangeText={setValor}
           style={styles.input}
-          placeholder="Senha"
+          placeholder="Valor"
+          secureTextEntry={true}
+          placeholderTextColor="#C3C3C3"
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <Text style={styles.title}>Estoque:</Text>
+        <TextInput
+          onChangeText={setQtdestoque}
+          style={styles.input}
+          placeholder="Estoque"
+          secureTextEntry={true}
+          placeholderTextColor="#C3C3C3"
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <Text style={styles.title}>Imagen:</Text>
+        <TextInput
+          onChangeText={setfoto}
+          style={styles.input}
+          placeholder="url Imagen"
           secureTextEntry={true}
           placeholderTextColor="#C3C3C3"
         />
       </View>
 
       <View>
-        <TouchableOpacity style={styles.butao} onPress={cadastrar}>
+        <TouchableOpacity style={styles.butao} onPress={pegarproduto}>
           <Text style={styles.btntext}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
 
 function modalAlert(msg) {
   Alert.alert("#Error404", msg, [
@@ -134,4 +155,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-

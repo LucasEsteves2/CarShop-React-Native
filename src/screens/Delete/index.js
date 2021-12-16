@@ -11,7 +11,7 @@ import {
   Image,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import api from "../../../src/service/api";
+import {api} from "../../../src/service/api";
 
 export function Delete() {
   const [produto, setProduto] = useState({});

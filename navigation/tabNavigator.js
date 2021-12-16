@@ -18,9 +18,8 @@ const BottomTabNavigator = () => {
   return (
     <Navigator
     screenOptions={{
-    // evitando que o tab bar fique em cima do input
-    keyboardHidesTabBar: true,
-    headerShown: false,
+      "tabBarHideOnKeyboard":"true",
+      headerShown: false,
     style: {
       height: 60,
       backgroundColor: colors.primary,
