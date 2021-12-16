@@ -1,43 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
-import { api } from '../../service/api';
+import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import { api } from "../../service/api";
+import logozita from "../../imagens/img2.png";
 
-export default function Cadastro(){
+export default function Cadastro() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const navigation = useNavigation();
 
-     const [nome, setNome] = useState('');
-     const [email, setEmail] = useState('');
-     const [senha, setSenha] = useState('');
-
-     async function cadastrar () {
-        try{
-
-            const {data} = await api.post('/clientes', 
-            {
-                bairro: "string",
-                cep: '25650061',
-                cidade: "string",
-                complemento: "string",
-                cpf: '13568220709',
-                email: email,
-                nome: nome,
-                nome_usuario: "string",
-                numero: '12345',
-                rua: '12345',
-                senha: senha,
-                telefone1: '22457858'
-            });
-
-            alert("Usuario Cadastrado com sucesso!!")
-        } catch {
-           alert('Erro ao Cadastrar usuario (informe um CPF valido!!')
-        }
+  async function cadastrar() {
+    //validando tamanho dos formulario
+    if (!nome.trim() || !email.trim() || !senha.trim() || nome.length < 5|| nome.length < 5) {
+      if (nome.length < 5) {
+        modalAlert("O nome deve possuir mais de 5 caracteres.");
+      } 
+      if (senha.length < 5) {
+        modalAlert("A senha deve possuir mais de 5 caracteres.");
+      } else {
+        modalAlert("Preencha todos os campos requeridos!!");
+      }
+    } else {
+      try {
+       await api.post("/funcionario", {
+          "email": "emaaail",
+          "nome": "noaaame",
+          "senha": "senhaaaa",
+        });
+        alert("Funcionario Cadastrado com sucesso!!");
+        navigation.navigate("Login");
+      } catch {
+        modalAlert("Erro ao Cadastrar usuario (informe um e-mail valido");
+      }
     }
-    
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.imageview}>
-        <Image  style={styles.imagem} />
+        <Image source={logozita} style={styles.imagem} />
       </View>
 
       <View>
@@ -75,13 +85,17 @@ export default function Cadastro(){
         <TouchableOpacity style={styles.butao} onPress={cadastrar}>
           <Text style={styles.btntext}>Cadastrar</Text>
         </TouchableOpacity>
-        
-
       </View>
     </View>
   );
 }
 
+
+function modalAlert(msg) {
+  Alert.alert("#Error404", msg, [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -90,12 +104,13 @@ const styles = StyleSheet.create({
     paddingVertical: 70,
   },
   senha: {
-    paddingVertical: 20,
+    paddingVertical: 9,
   },
   title: {
     color: "#FFFFFF",
     fontSize: 9,
     fontWeight: "bold",
+    paddingVertical: 9,
   },
   btntext: {
     fontSize: 11,
@@ -115,18 +130,17 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 7,
     alignItems: "center",
-    marginTop: 3,
+    marginTop: 20,
   },
   imagem: {
     justifyContent: "center",
     marginVertical: 20,
 
     width: 180,
-    height: 90,
+    height: 150,
   },
   imageview: {
     alignItems: "center",
-  
   },
 
   cadastro: {
