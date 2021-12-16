@@ -38,4 +38,3 @@ export const ProdList = styled(FlatList).attrs({
 })``;
 
 
-

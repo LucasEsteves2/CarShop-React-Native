@@ -31,8 +31,8 @@ export function Login() {
         //pegando todos os dados do usuario (nome,cpf ,etc..)
         var { data } = await api.get(`/funcionario/email?value=${login}`);
         //salvando dados localmente no async
-        await AssetItem("@syncStorage.erratec:usuario", JSON.stringify(data));
-        navigation.navigate("Home");
+        await AsyncStorage.setItem("@serratec:usuario", JSON.stringify(data));
+                navigation.navigate("Home");
       } catch {
         modalAlert("USUARIO INVALIDO!!");
       }

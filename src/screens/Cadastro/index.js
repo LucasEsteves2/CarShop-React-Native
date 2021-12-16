@@ -37,7 +37,7 @@ export default function Cadastro() {
           "senha": senha,
         });
         alert("Funcionario Cadastrado com sucesso!!");
-        navigation.navigate("Login");
+        // navigation.navigate("Login");
       } catch {
         modalAlert("Erro ao Cadastrar usuario (informe um e-mail valido");
       }
