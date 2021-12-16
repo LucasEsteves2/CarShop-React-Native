@@ -6,6 +6,7 @@ import { Container, Header, ProdutosTotal, HeaderConteudo, Imagita, ProdList } f
 import { RFValue } from "react-native-responsive-fontsize";
 import Logo from "../../imagens/logobar.png";
 import { Produtos } from "../../components/Produtos"
+import { api } from "../../service/api";
 
 export function Home() {
 
@@ -27,6 +28,17 @@ export function Home() {
     }
     loadData();
   }, []);
+
+  //carros
+  useEffect(()=>{
+    async function buscarCarros(){
+      api.get('/produtos')
+      console.log(response)
+    }
+    buscarCarros();
+    
+
+  },[]);
 
   function logout() {
     navigation.navigate("Login");
