@@ -18,7 +18,7 @@ export function Login() {
   const [senha, setSenha] = useState("");
   const [btn, setBtn] = useState("");
   const navigation = useNavigation();
-  var dados = { email: login, senha: senha };
+  var dados = { email: login.trim(), senha: senha };
 
   //verificando se usuario existe na api
   async function entrar() {
