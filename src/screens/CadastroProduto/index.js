@@ -62,8 +62,8 @@ export function Cadastrar() {
           onChangeText={setValor}
           style={styles.input}
           placeholder="Valor"
-          secureTextEntry={true}
-          placeholderTextColor="#C3C3C3"
+          keyboardType='numeric'
+         placeholderTextColor="#C3C3C3"
         />
       </View>
 
@@ -73,7 +73,7 @@ export function Cadastrar() {
           onChangeText={setQtdestoque}
           style={styles.input}
           placeholder="Estoque"
-          secureTextEntry={true}
+          keyboardType='numeric'
           placeholderTextColor="#C3C3C3"
         />
       </View>
@@ -84,7 +84,6 @@ export function Cadastrar() {
           onChangeText={setfoto}
           style={styles.input}
           placeholder="url Imagen"
-          secureTextEntry={true}
           placeholderTextColor="#C3C3C3"
         />
       </View>
