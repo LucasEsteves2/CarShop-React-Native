@@ -16,16 +16,17 @@ margin-bottom:16px;
 
 export const Detalhes = styled.View`
 margin-top:16px;
+width:93px;
 `;
 
 export const Prod = styled.Text`
-font-size:${RFValue(13)}px;
+font-size:${RFValue(10)}px;
 text-transform:uppercase;
 color: grey;
 `;
 
 export const Tipo = styled.Text`
-font-size:${RFValue(15)}px;
+font-size:${RFValue(9)}px;
 text-transform:uppercase;
 `;
 
@@ -36,13 +37,13 @@ margin-bottom:16px;
 `;
 
 export const Valor = styled.Text`
-font-size:${RFValue(13)}px;
+font-size:${RFValue(10)}px;
 text-transform:uppercase;
 color: grey;
 `;
 
 export const Preco = styled.Text`
-font-size:${RFValue(15)}px;
+font-size:${RFValue(9)}px;
 text-transform:uppercase;
 color: red;
 

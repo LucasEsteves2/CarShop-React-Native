@@ -11,9 +11,9 @@ import {
 } from './style';
 
 interface prodData {
-    tipo: string;
-    preco: string;
-    img:string;
+    nome: string;
+    valor: number;
+    urlImagem: string;
 }
 interface Props {
     data: prodData;
@@ -24,14 +24,14 @@ export function Produtos({ data }: Props) {
     return (
         <Container>
             <Detalhes>
-                <Prod>Produto:</Prod>
-                <Tipo>{data.tipo}</Tipo>
+                <Prod>Carro:</Prod>
+                <Tipo>{data.nome}</Tipo>
                 <Sobre>
                     <Valor>Valor:</Valor>
-                    <Preco>{`R$ ${data.preco}`}</Preco>
+                    <Preco>{`R$ ${data.valor}`}</Preco>
                 </Sobre>
             </Detalhes>
-            <ProdImagem source={{ uri: data.img }} />
+            <ProdImagem source={{ uri: data.urlImagem }} />
 
 
         </Container>

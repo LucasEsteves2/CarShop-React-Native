@@ -1,7 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import{FlatList} from 'react-native'
-
+import { FlatList, FlatListProps } from 'react-native'
+import { ProdutoDTO } from "../../dtos/produtoDTO";
 
 export const Container = styled.View`
 flex:1;
@@ -30,11 +30,11 @@ color:white;
 `;
 
 
-export const ProdList = styled(FlatList).attrs({
-    contentContainerStyle:{
+export const ProdList = styled(FlatList as new (props: FlatListProps<ProdutoDTO>) => FlatList<ProdutoDTO>).attrs({
+    contentContainerStyle: {
         padding: 24
     },
-    showVerticalScrollIndicator:false
+    showVerticalScrollIndicator: false
 })``;
 
 
