@@ -3,6 +3,7 @@ import { Alert, Button, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
+
 export function Home() {
   const navigation = useNavigation();
   const [usuario, setUsuario] = useState({});
@@ -25,11 +26,19 @@ function perfil()
 {
   navigation.navigate("Perfil");
 }
+
+function upDate()
+{
+  navigation.navigate("upDate");
+}
+
+
   return (
     <>
       <Text>Bem vindo{usuario.email}</Text>
       <Button title="Perfil" onPress={perfil}> </Button> 
       <Button title="Deslogar" onPress={logout}> </Button>
+      <Button title="Update" onPress={upDate}> </Button>
     </>
   );
 }

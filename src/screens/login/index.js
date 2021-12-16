@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
 
   },
   butao: {
-    backgroundColor: "#A370F7",
+    backgroundColor: "#7b42f5",
     padding: 10,
-    borderRadius: 7,
+    borderRadius: 20,
     alignItems: "center",
     marginTop: 3,
   },

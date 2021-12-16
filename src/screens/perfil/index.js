@@ -3,6 +3,7 @@ import { Alert, Button, Text, View, StyleSheet, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
 
 export function Perfil() {
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ export function Perfil() {
 console.log('Usuario', usuario);
   return (
     <View  style={styles.container}>
+      <StatusBar hidden />
       <ScrollView>
       <View>
          <Image source={require('../../imagens/usuario.png')}

@@ -1,70 +1,107 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
-import { api } from '../../service/api';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image
+} from "react-native";
+import { api } from "../../service/api";
 
 export function upDate() {
-    const [id, setId] = useState('');
-    const [nome, setNome] = useState('');
-    const [descricao, setDescricao]= useState('');
-    const[imagem, setImagem]= useState('');
-    const[valor, setValor]= useState('');
-    const[qtdEstoque, setQtdEstoque]= useState('');
-  
-    async function Atualizar(){
-        await api.put(`/produto/${id}`,{
-            descricao: descricao,
-            fotoLink: imagem,
-            idCategoria: 1,
-            idFuncionario: 1,
-            nome: nome,
-            nomeCategoria: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
-            nomeFuncionario: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            qtdEstoque: qtdEstoque,
-            valor: valor
-        })
-    }
-  
-    return (
-      <View style={styles.container}>
-        <StatusBar hidden/>
-        <TextInput placeholder='id' style={styles.textImput} onChangeText={text=> setId(text)}/>
-        <TextInput placeholder='nome' style={styles.textImput} onChangeText={text=> setNome(text)}/>
-        <TextInput placeholder='descricao' style={styles.textImput} onChangeText={text=> setDescricao(text)}/>
-        <TextInput placeholder='imagem' style={styles.textImput} onChangeText={text=> setImagem(text)}/>
-        <TextInput placeholder='valor' style={styles.textImput} onChangeText={text=> setValor(text)}/>
-        <TextInput placeholder='qtdEstoque' style={styles.textImput} onChangeText={text=> setQtdEstoque(text)}/>
-  
-        <TouchableOpacity onPress={Atualizar} style={styles.bntUpdate} >
-          <Text style={{color:'white',textAlign:'center'}}>Update do produto</Text>
-        </TouchableOpacity>
-  
-      </View>
-    );
+  const [id, setId] = useState("");
+  const [nome, setNome] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [imagem, setImagem] = useState("");
+  const [valor, setValor] = useState("");
+  const [qtdEstoque, setQtdEstoque] = useState("");
+
+  var data = {
+    descricao: descricao,
+    nome: nome,
+    qtd_estoque: qtdEstoque,
+    urlImg: imagem,
+    valor: valor,
+  };
+
+  async function Atualizar() {
+    await api.put('/produtos/${id}', data);
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#613FA0",
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    textImput:{
-    paddingVertical: 10,
-      width:'100%',
-      height:40,
-      backgroundColor:'white',
-      borderRadius:20,
-      paddingLeft:10,
-      paddingBottom:10
-    },
-    bntUpdate:{
-      width:'100%',
-      height:40,
-      backgroundColor:'#7b42f5',
-      borderRadius:20,
-      justifyContent:'center'
-    }
-  });
+
+  return (
+    <View style={styles.container}>
+      <StatusBar hidden />
+      <Image source={require('../../imagens/editar.png')}
+           style={styles.usuarioImage}></Image>
+      <TextInput
+        placeholder="id"
+        style={styles.textInput}
+        onChangeText={(text) => setId(text)}
+      />
+      <TextInput
+        placeholder="nome"
+        style={styles.textInput}
+        onChangeText={(text) => setNome(text)}
+      />
+      <TextInput
+        placeholder="descricao"
+        style={styles.textInput}
+        onChangeText={(text) => setDescricao(text)}
+      />
+      <TextInput
+        placeholder="imagem"
+        style={styles.textInput}
+        onChangeText={(text) => setImagem(text)}
+      />
+      <TextInput
+        placeholder="valor"
+        style={styles.textInput}
+        onChangeText={(text) => setValor(text)}
+      />
+      <TextInput
+        placeholder="qtdEstoque"
+        style={styles.textInput}
+        onChangeText={(text) => setQtdEstoque(text)}
+      />
+
+      <TouchableOpacity onPress={Atualizar} style={styles.bntUpdate}>
+        <Text style={{ color: "#FFFFFF", textAlign: "center" }}>
+          Editar Produto
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#613FA0",
+    alignItems: "center",
+  },
+  textInput: {
+    padding: '2%',
+    width: "95%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 7,
+    paddingLeft: 10,
+    marginTop: '4%'
+  },
+  bntUpdate: {
+    width: "50%",
+    padding: '3%',
+    backgroundColor: "#7b42f5",
+    borderRadius: 20,
+    justifyContent: "center",
+    marginTop: '7%'
+  },
+
+  usuarioImage:{
+    resizeMode:'contain',
+    alignSelf:'center',
+  }
+
+});
   
