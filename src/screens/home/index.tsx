@@ -63,7 +63,7 @@ export function Home() {
               height={RFValue(12)} />
 
             <ProdutosTotal>
-              produtos:
+              icon
             </ProdutosTotal>
 
 
