@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
   },
 
   item: {
+    paddingBottom:10,
     alignItems: "center",
   },
   buscar: {

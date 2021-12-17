@@ -20,6 +20,7 @@ const BottomTabNavigator = () => {
     <Navigator
     initialRouteName="home"
     screenOptions={{
+      
       "tabBarHideOnKeyboard":"true",
       headerShown: false,
     style: {
@@ -67,6 +68,7 @@ const BottomTabNavigator = () => {
   <Tab.Screen    
     name="Adicionar"
     component={CadastroProduto}
+    
     options={{
       tabBarIcon: ({ size, focused }) => {
         return (
@@ -78,12 +80,22 @@ const BottomTabNavigator = () => {
           />
         );
       },
-    }}
+    }
+  
+  
+  
+  }
   />
 
 
 <Screen
       name="home"
+      listeners={{
+        tabPress: e => {
+            console.log("pressed")
+            
+        },
+    }}
       component={Home}
       options={{
         tabBarIcon: ({ size, focused }) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Alert, Button, Text, StatusBar, Image } from "react-native";
+import { StyleSheet, Alert, Button, Text,TouchableOpacity, StatusBar, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { Container, Header, ProdutosTotal, HeaderConteudo, ProdList } from "./style";
@@ -16,6 +16,7 @@ export function Home() {
   const [produtos, setProdutos] = useState<ProdutoDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [usuario, setUsuario] = useState({});
+  const [btnn, setBtnn] = useState();
 
   //Pegando dados do usuario logado (async storage)
   useEffect(() => {
@@ -42,7 +43,13 @@ export function Home() {
     buscarCarros();
 
 
-  }, []);
+  }, [usuario]);
+
+  function relogar()
+  {
+    setUsuario('a');
+    alert("Lista atualizada com sucesso")
+  }
 
   return (
     <>
@@ -62,9 +69,12 @@ export function Home() {
               width={RFValue(108)}
               height={RFValue(12)} />
 
+<TouchableOpacity  onPress={relogar}>
+         
             <ProdutosTotal>
-              produtos:
+              Recarregar
             </ProdutosTotal>
+        </TouchableOpacity>
 
 
           </HeaderConteudo>
@@ -74,12 +84,13 @@ export function Home() {
           keyExtractor={Item => String(Item.id)}
           renderItem={({ item }) =>
             <Produtos data={item} />}
-
-
         >
 
-
         </ProdList>
+
+
+
+        
       </Container>
 
     </>
