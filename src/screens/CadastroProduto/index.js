@@ -29,29 +29,28 @@ export function CadastroProduto() {
 
   async function pegarproduto() {
     try {
-      await api.post("/produtos",data);
+      await api.post("/produtos", data);
       modalAlert("Produto cadastrado!");
-     limparForm()
+      limparForm()
     } catch (error) {
       alert("Erro ao cadastrar o produto");
     }
   }
 
 
-  function limparForm()
-{
-  setDescricao("")
-  setNome("")
-  setfoto("")
-  setQtdestoque("")
-  setValor("") 
-}
+  function limparForm() {
+    setDescricao("")
+    setNome("")
+    setfoto("")
+    setQtdestoque("")
+    setValor("")
+  }
 
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      <Image source={require('../../imagens/editar.png')}
-      style={styles.image}></Image>
+      <Image source={require('../../imagens/add-user.png')}
+        style={styles.image}></Image>
       <View>
         <TextInput
           onChangeText={setNome}
@@ -78,8 +77,8 @@ export function CadastroProduto() {
           style={styles.input}
           placeholder="Valor do produto"
           keyboardType='numeric'
-         placeholderTextColor="#C3C3C3"
-         value={valor}
+          placeholderTextColor="#C3C3C3"
+          value={valor}
 
         />
       </View>
@@ -113,7 +112,7 @@ export function CadastroProduto() {
           <Text style={styles.btntext}>Limpar</Text>
         </TouchableOpacity>
       </View>
-      
+
     </View>
   );
 }
@@ -144,7 +143,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 7,
     alignSelf: 'center',
-    marginTop: '4%'
+    marginTop: '4%',
+    marginVertical: 10,
+    borderRadius: 7,
+    marginTop: 3,
+    fontSize: 10,
   },
   butoes: {
     flexDirection: 'row',
@@ -169,11 +172,13 @@ const styles = StyleSheet.create({
     marginRight: '15%'
   },
 
-  image:{
-    resizeMode:'contain',
-    alignSelf:'center',
+  image: {
+    height: 150,
+    marginVertical: 30,
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
- 
+
   cadastro: {
     paddingTop: 25,
     alignItems: "center",

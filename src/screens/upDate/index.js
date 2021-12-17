@@ -33,8 +33,8 @@ export function upDate() {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      <Image source={require('../../imagens/editar.png')}
-           style={styles.usuarioImage}></Image>
+      <Image source={require('../../imagens/update.png')}
+        style={styles.usuarioImage}></Image>
       <TextInput
         placeholder="id"
         style={styles.textInput}
@@ -67,7 +67,7 @@ export function upDate() {
       />
 
       <TouchableOpacity onPress={Atualizar} style={styles.bntUpdate}>
-        <Text style={{ color: "#FFFFFF", textAlign: "center" }}>
+        <Text style={{ color: "#FFFFFF", textAlign: "center", fontSize: 12 }}>
           Editar Produto
         </Text>
       </TouchableOpacity>
@@ -83,11 +83,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     padding: '2%',
-    width: "95%",
+    width: "90%",
     backgroundColor: "#FFFFFF",
+    color: "black",
+    marginVertical: 10,
     borderRadius: 7,
-    paddingLeft: 10,
-    marginTop: '4%'
+    marginTop: 3,
+    fontSize: 10,
   },
   bntUpdate: {
     width: "50%",
@@ -98,10 +100,11 @@ const styles = StyleSheet.create({
     marginTop: '7%'
   },
 
-  usuarioImage:{
-    resizeMode:'contain',
-    alignSelf:'center',
+  usuarioImage: {
+    height: 100,
+    marginVertical: 30,
+    resizeMode: 'contain',
+    alignSelf: 'center',
   }
 
 });
-  

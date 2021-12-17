@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Text, View, StyleSheet, Image,TouchableOpacity } from "react-native";
+import { Alert, Button, Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import logozita from "../../imagens/usuario.png";
+import logozita from "../../imagens/perfil.png";
 
 
 export function Perfil() {
   const navigation = useNavigation();
   const [usuario, setUsuario] = useState({});
 
- 
+
   //Pegando dados do usuario logado (async storage)
   useEffect(() => {
     async function loadData() {
@@ -24,9 +24,9 @@ export function Perfil() {
   async function sair() {
     await AsyncStorage.removeItem("@serratec:usuario");
     navigation.navigate("Login");
-   }
+  }
 
-console.log('Usuario', usuario);
+  console.log('Usuario', usuario);
   return (
     <View style={styles.container}>
       <View style={styles.imageview}>
@@ -60,9 +60,9 @@ console.log('Usuario', usuario);
         </TouchableOpacity>
 
       </View>
-      </View>
+    </View>
 
-     
+
   );
 }
 
@@ -107,8 +107,9 @@ const styles = StyleSheet.create({
   imagem: {
     justifyContent: "center",
     marginVertical: 20,
-    width: 180,
-    height: 240,
+    width: 200,
+    height: 200,
+
 
   },
   imageview: {
@@ -121,4 +122,3 @@ const styles = StyleSheet.create({
   },
 });
 
-   
