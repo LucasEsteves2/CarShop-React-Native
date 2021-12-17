@@ -18,8 +18,13 @@ export function Delete() {
   const [id, setId] = useState();
   const [texto,setTexto] = useState('');
   async function BuscarId() {
-    const { data } = await api.get(`produtos/${id}`);
-    setProduto(data);
+    try{
+
+      const { data } = await api.get(`produtos/${id}`);
+      setProduto(data);
+    }catch{
+      modalAlertError("Produto Invalido!")
+    }
   }
   async function DeletarId() {
     try {
@@ -98,6 +103,12 @@ export function Delete() {
 
 function modalAlert(msg) {
   Alert.alert("#Sucess", msg, [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+}
+
+function modalAlertError(msg) {
+  Alert.alert("#404", msg, [
     { text: "OK", onPress: () => console.log("OK Pressed") },
   ]);
 }

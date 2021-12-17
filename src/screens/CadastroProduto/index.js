@@ -11,6 +11,7 @@ import {
 import { api } from "../../service/api";
 
 export function Cadastrar() {
+
   const [descricao, setDescricao] = useState("");
   const [foto, setfoto] = useState("");
   const [nome, setNome] = useState("");
@@ -30,9 +31,19 @@ export function Cadastrar() {
       modalAlert("Produto cadastrado!");
      limparForm()
     } catch (error) {
-      alert(error.toString());
+      alert("Erro ao cadastrar o produto");
     }
   }
+
+
+  function limparForm()
+{
+  setDescricao("")
+  setNome("")
+  setfoto("")
+  setQtdestoque("")
+  setValor("") 
+}
 
   return (
     <View style={styles.container}>
@@ -43,6 +54,8 @@ export function Cadastrar() {
           style={styles.input}
           placeholder="Nome do produto"
           placeholderTextColor="#C3C3C3"
+          value={nome}
+
         />
       </View>
 
@@ -53,6 +66,7 @@ export function Cadastrar() {
           style={styles.input}
           placeholder="Descricão"
           placeholderTextColor="#C3C3C3"
+          value={descricao}
         />
       </View>
 
@@ -64,6 +78,8 @@ export function Cadastrar() {
           placeholder="Valor do produto"
           keyboardType='numeric'
          placeholderTextColor="#C3C3C3"
+         value={valor}
+
         />
       </View>
 
@@ -75,6 +91,8 @@ export function Cadastrar() {
           placeholder="Estoque"
           keyboardType='numeric'
           placeholderTextColor="#C3C3C3"
+          value={qtdestoque}
+
         />
       </View>
       <View style={styles.senha}>
@@ -84,6 +102,8 @@ export function Cadastrar() {
           style={styles.input}
           placeholder="url Imagen"
           placeholderTextColor="#C3C3C3"
+          value={foto}
+
         />
       </View>
       <View>
@@ -96,21 +116,13 @@ export function Cadastrar() {
 }
 
 
-function limparForm()
-{
-  setDescricao("")
-  setNome("")
-  setfoto("")
-  setQtdestoque("")
-  setValor("") 
-}
-
-
 function modalAlert(msg) {
   Alert.alert("#Sucesso", msg, [
     { text: "OK", onPress: () => console.log("OK Pressed") },
   ]);
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
