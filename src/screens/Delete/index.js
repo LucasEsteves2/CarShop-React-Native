@@ -18,13 +18,13 @@ import { ScrollView } from "react-native-gesture-handler";
 export function Delete() {
   const [produto, setProduto] = useState({});
   const [id, setId] = useState();
-  const [texto,setTexto] = useState('');
+  const [texto, setTexto] = useState('');
   async function BuscarId() {
-    try{
+    try {
 
       const { data } = await api.get(`produtos/${id}`);
       setProduto(data);
-    }catch{
+    } catch {
       modalAlertError("Produto Invalido!")
     }
   }
@@ -59,8 +59,8 @@ export function Delete() {
     <View style={styles.container}>
       <ScrollView>
         <StatusBar hidden />
-        <Image source={require('../../imagens/editar.png')}
-        style={styles.usuarioImage}></Image>
+        <Image source={require('../../imagens/delete.png')}
+          style={styles.usuarioImage}></Image>
         <View style={styles.containerDelete}>
           <Text style={styles.delete}>
             Favor digite o ID do produto que deseja excluir:
@@ -77,7 +77,7 @@ export function Delete() {
         <View>
           <TouchableOpacity onPress={BuscarId} style={styles.botao}>
             <Text style={styles.buscar}>Buscar</Text>
-            
+
           </TouchableOpacity>
         </View>
 
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   delete: {
     color: "white",
     fontSize: 17,
-    alignSelf:'center'
+    alignSelf: 'center'
   },
 
   input: {
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   buscar: {
     color: "#fff",
-    textAlign:'center',
+    textAlign: 'center',
   },
   produto: {
     justifyContent: "center",
@@ -182,9 +182,11 @@ const styles = StyleSheet.create({
     marginTop: '7%',
     alignSelf: 'center'
   },
-  
-  usuarioImage:{
-    resizeMode:'contain',
-    alignSelf:'center',
+
+  usuarioImage: {
+    height: 200,
+    marginVertical: 30,
+    resizeMode: 'contain',
+    alignSelf: 'center',
   }
 });

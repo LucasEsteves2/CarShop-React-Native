@@ -72,7 +72,11 @@ export function Home() {
 <TouchableOpacity  onPress={relogar}>
          
             <ProdutosTotal>
+<<<<<<< HEAD
               Recarregar
+=======
+          Produtos:
+>>>>>>> 466be45c5463d0b40c05caa8a97695b539e2a1c0
             </ProdutosTotal>
         </TouchableOpacity>
 
