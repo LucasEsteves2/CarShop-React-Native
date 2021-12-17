@@ -28,6 +28,7 @@ export function Cadastrar() {
     try {
       await api.post("/produtos",data);
       modalAlert("Produto cadastrado!");
+     limparForm()
     } catch (error) {
       alert(error.toString());
     }
@@ -40,13 +41,13 @@ export function Cadastrar() {
         <TextInput
           onChangeText={setNome}
           style={styles.input}
-          placeholder="Usuario"
+          placeholder="Nome do produto"
           placeholderTextColor="#C3C3C3"
         />
       </View>
 
       <View style={styles.senha}>
-        <Text style={styles.title}>Descricão:</Text>
+        <Text style={styles.title}>Descrição:</Text>
         <TextInput
           onChangeText={setDescricao}
           style={styles.input}
@@ -60,7 +61,7 @@ export function Cadastrar() {
         <TextInput
           onChangeText={setValor}
           style={styles.input}
-          placeholder="Valor"
+          placeholder="Valor do produto"
           keyboardType='numeric'
          placeholderTextColor="#C3C3C3"
         />
@@ -95,6 +96,14 @@ export function Cadastrar() {
 }
 
 
+function limparForm()
+{
+  setDescricao("")
+  setNome("")
+  setfoto("")
+  setQtdestoque("")
+  setValor("") 
+}
 
 
 function modalAlert(msg) {

@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   item: {
-    paddingBottom:0,
+    paddingBottom:10,
     alignItems: "center",
   },
   buscar: {
