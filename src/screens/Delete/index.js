@@ -16,7 +16,7 @@ import { api } from "../../service/api";
 export function Delete() {
   const [produto, setProduto] = useState({});
   const [id, setId] = useState();
-
+  const [texto,setTexto] = useState('');
   async function BuscarId() {
     const { data } = await api.get(`produtos/${id}`);
     setProduto(data);
@@ -24,9 +24,11 @@ export function Delete() {
   async function DeletarId() {
     try {
       const response = await api.delete(`produtos/${id}`);
-      if (response) {
-        console.log("cancelado");
-      }
+      modalAlert('Produto deletado')
+      setId('')
+      setProduto('')
+      setTexto('')
+
     } catch (error) {
       console.log("não cancelado");
     }
@@ -77,7 +79,11 @@ export function Delete() {
           resizeMode="contain"
           source={{ uri: produto.urlImagem }}
         />
-         <TouchableOpacity style={styles.item}>
+        
+        
+      </View>
+
+      <TouchableOpacity style={styles.item}>
         <Text style={{ color: "white" }}> DELETAR</Text>
         <MaterialIcons
           name="delete"
@@ -86,12 +92,16 @@ export function Delete() {
           onPress={createTwoButtonAlert}
         />
       </TouchableOpacity>
-      </View>
-
-     
     </SafeAreaView>
   );
 }
+
+function modalAlert(msg) {
+  Alert.alert("#Sucess", msg, [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+}
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#613Fa0",
@@ -123,7 +133,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   item: {
-    paddingBottom:20,
+    paddingBottom:0,
     alignItems: "center",
   },
   buscar: {
