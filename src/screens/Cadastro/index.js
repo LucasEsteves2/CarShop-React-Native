@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
@@ -10,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { api } from "../../service/api";
-import logozita from "../../imagens/img2.png";
+
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
@@ -46,8 +47,9 @@ export default function Cadastro() {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <View style={styles.imageview}>
-        <Image source={logozita} style={styles.imagem} />
+        <Image source={require('../../imagens/img2.png')} style={styles.imagem} />
       </View>
 
       <View>
@@ -108,13 +110,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#FFFFFF",
-    fontSize: 9,
+    fontSize: 10,
     fontWeight: "bold",
     paddingVertical: 9,
   },
   btntext: {
-    fontSize: 11,
+    fontSize: 12,
     color: "#FFFFFF",
+    alignSelf: 'center'
   },
 
   input: {
@@ -126,11 +129,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   butao: {
-    backgroundColor: "#A370F7",
-    padding: 10,
-    borderRadius: 7,
-    alignItems: "center",
-    marginTop: 20,
+    width: "50%",
+    padding: '3%',
+    backgroundColor: "#7b42f5",
+    borderRadius: 20,
+    justifyContent: "center",
+    alignSelf: 'center',
+    marginTop: '5%'
   },
   imagem: {
     justifyContent: "center",

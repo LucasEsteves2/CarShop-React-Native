@@ -1,143 +1,181 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity, TextInput} from 'react-native';
-import api from "../../service/api";
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  Image
+} from "react-native";
+import { api } from "../../service/api";
 
-export function Cadastrar() {
+export function CadastroProduto() {
 
-  const [Descricao,setDescricao]=useState("");
-  const [Foto,setfoto]=useState("");;
-  const [Nome,setNome]=useState("");
-  const [Qtdestoque,setQtdestoque]=useState("");
-  const [Valor,setValor]=useState("");
-
-   async function pegarproduto(){
-     try{
-       alert("Sucesso! Produto cadastrado!")
-   const {data}= await api.post("/produtos", 
-   {   
-    desc: Descricao,
-    urlImagem: Foto,
-    nome: Nome,
-    qtd_estoque: Qtdestoque,
-    valor: Valor
-  })
-
-      }catch(error){
-        alert(error.toString())
-      }
-
+  const [descricao, setDescricao] = useState("");
+  const [foto, setfoto] = useState("");
+  const [nome, setNome] = useState("");
+  const [qtdestoque, setQtdestoque] = useState("");
+  const [valor, setValor] = useState("");
+  var data = {
+    desc: descricao,
+    nome: nome,
+    qtd_estoque: qtdestoque,
+    urlImagem: foto,
+    valor: valor,
   };
- 
-  
-  return (
-    <SafeAreaView style={styles.area}>
-     
 
-      <View style={styles.containerProd}>
-        <Text style={styles.textcadastro}>CADASTRO DE NOVOS PRODUTOS</Text>
-      </View>
-      <View style={styles.containerProd}>
-        <Text style={styles.legenda}>Nome do produto: </Text>
-        <TextInput style={styles.input} placeholder="Nome"
-          placeholderTextColor="#C3C3C3" onChangeText={setNome}/>
-      </View>
+  async function pegarproduto() {
+    try {
+      await api.post("/produtos",data);
+      modalAlert("Produto cadastrado!");
+     limparForm()
+    } catch (error) {
+      alert("Erro ao cadastrar o produto");
+    }
+  }
 
-      <View style={styles.containerProd}>
-        <Text style={styles.legenda}>Link da imagem do produto: </Text>
-        <TextInput  style={styles.input}  placeholder="Imagem"
-          placeholderTextColor="#C3C3C3" onChangeText={setfoto}/>
-      </View>
 
-      <View style={styles.containerProd}>
-        <Text style={styles.legenda}>Descrição do produto: </Text>
-        <TextInput  style={styles.inputDesc} multiline placeholder="Descrição"
-          placeholderTextColor="#C3C3C3" onChangeText={setDescricao}/>
-      </View>
-
-      <View style={styles.containerProd}>
-        <Text style={styles.legenda}>Quantidade do produto: </Text>
-        <TextInput  style={styles.input} placeholder="Quantidade"
-          placeholderTextColor="#C3C3C3" onChangeText={setQtdestoque}/>
-      </View>
-
-      <View style={styles.containerProd} >
-        <Text style={styles.legenda}>Valor do produto: </Text>
-        <TextInput  style={styles.input}  placeholder="Valor"
-          placeholderTextColor="#C3C3C3" onChangeText={setValor}/>
-      </View>
-
-      <View style={styles.containerProd} >
-      <TouchableOpacity style={styles.botao}onPress={pegarproduto}>
-      <Text style={styles.add}>ADICIONAR PRODUTO</Text>
-      </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-};
-const styles = StyleSheet.create({
-area:{
-  width: "100%",
-  height: "100%",
-  backgroundColor: "#613FA0"
-},
-input:{
-  width: "80%",
-  height: 30,
-  backgroundColor: "#ffffff",
-  borderColor: "#ffffff",
-  borderWidth: 3,
-  fontSize: 15,
-  borderRadius: 20,
-  padding: 9
- 
-},
-inputDesc:{
-  width: "80%",
-  height: 50,
-  backgroundColor: "#ffffff",
-  borderColor: "#fff",
-  borderWidth: 3,
-  fontSize: 15,
-  borderRadius: 20,
-  padding: 9
-},
-legenda:{
-  width: "80%",
-  marginLeft: 20,
-  fontSize: 17,
-  color: "#fff",
-  fontWeight: "bold",
-  marginTop: 15,
- 
-},
-botao:{
-  flexDirection: "row",
-  marginTop: 20,
-  width: "80%",
-  height: 30,
-  backgroundColor: "#7b42f5",
-  borderRadius: 20,
-  justifyContent: "center",
-  justifyContent: "center",
-  alignItems: "center",
-  
-},
-add: {
-  color:  "#fff",
-  fontWeight: "bold",
-  fontSize: 20
- 
-},
-containerProd: {
-  justifyContent: "center",
-  alignItems: "center",
-  marginTop: 15
-},
-textcadastro:{
-  fontSize: 20,
-  fontWeight: "bold",
-  marginTop: 30,
-  color: "#fff"
+  function limparForm()
+{
+  setDescricao("")
+  setNome("")
+  setfoto("")
+  setQtdestoque("")
+  setValor("") 
 }
 
-})
+  return (
+    <View style={styles.container}>
+      <StatusBar hidden />
+      <Image source={require('../../imagens/editar.png')}
+      style={styles.image}></Image>
+      <View>
+        <TextInput
+          onChangeText={setNome}
+          style={styles.input}
+          placeholder="Nome do produto"
+          placeholderTextColor="#C3C3C3"
+          value={nome}
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <TextInput
+          onChangeText={setDescricao}
+          style={styles.input}
+          placeholder="Descricão"
+          placeholderTextColor="#C3C3C3"
+          value={descricao}
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <TextInput
+          onChangeText={setValor}
+          style={styles.input}
+          placeholder="Valor do produto"
+          keyboardType='numeric'
+         placeholderTextColor="#C3C3C3"
+         value={valor}
+
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <TextInput
+          onChangeText={setQtdestoque}
+          style={styles.input}
+          placeholder="Estoque"
+          keyboardType='numeric'
+          placeholderTextColor="#C3C3C3"
+          value={qtdestoque}
+
+        />
+      </View>
+      <View style={styles.senha}>
+        <TextInput
+          onChangeText={setfoto}
+          style={styles.input}
+          placeholder="url Imagen"
+          placeholderTextColor="#C3C3C3"
+          value={foto}
+        />
+      </View>
+
+      <View style={styles.butoes}>
+        <TouchableOpacity style={styles.butao1} onPress={pegarproduto}>
+          <Text style={styles.btntext}>Cadastrar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.butao2} onPress={limparForm}>
+          <Text style={styles.btntext}>Limpar</Text>
+        </TouchableOpacity>
+      </View>
+      
+    </View>
+  );
+}
+
+
+function modalAlert(msg) {
+  Alert.alert("#Sucesso", msg, [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#613FA0",
+  },
+
+  btntext: {
+    fontSize: 11,
+    color: "#FFFFFF",
+    alignSelf: 'center',
+  },
+
+  input: {
+    padding: '2%',
+    width: "95%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 7,
+    alignSelf: 'center',
+    marginTop: '4%'
+  },
+  butoes: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  butao1: {
+    width: "30%",
+    padding: '3%',
+    backgroundColor: "#7b42f5",
+    borderRadius: 20,
+    justifyContent: "center",
+    marginTop: '5%',
+    marginLeft: '15%'
+  },
+  butao2: {
+    width: "30%",
+    padding: '3%',
+    backgroundColor: "#7b42f5",
+    borderRadius: 20,
+    justifyContent: "center",
+    marginTop: '5%',
+    marginRight: '15%'
+  },
+
+  image:{
+    resizeMode:'contain',
+    alignSelf:'center',
+  },
+ 
+  cadastro: {
+    paddingTop: 25,
+    alignItems: "center",
+  },
+});
