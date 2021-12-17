@@ -10,6 +10,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { CadastroProduto } from '../src/screens/CadastroProduto';
 import { Delete } from '../src/screens/Delete';
 import { upDate } from '../src/screens/upDate';
+import { Perfil } from '../src/screens/perfil';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ const BottomTabNavigator = () => {
 
   return (
     <Navigator
+    initialRouteName="home"
     screenOptions={{
       "tabBarHideOnKeyboard":"true",
       headerShown: false,
@@ -43,24 +45,27 @@ const BottomTabNavigator = () => {
     activeTintColor: colors.purple,
   }}
   >
-    <Screen
-      name="home"
-      component={Home}
-      options={{
-        tabBarIcon: ({ size, focused }) => {
-          return (
-            <Ionicons
-              name="md-home"
+    <Tab.Screen    
+    name="Perfil"
+    component={Perfil}
+    options={{
+      tabBarIcon: ({ size, focused }) => {
+        return (
+          <Ionicons
+              name="person-circle-outline"
               size={size}
               color={focused ? "black": colors.black}
-            />
-          );
-        },
-      }}
-      />
+// aa
+          />
+        );
+      },
+    }}
+  />
+
+
 
   <Tab.Screen    
-    name="Adicionar Produto"
+    name="Adicionar"
     component={CadastroProduto}
     options={{
       tabBarIcon: ({ size, focused }) => {
@@ -77,8 +82,24 @@ const BottomTabNavigator = () => {
   />
 
 
+<Screen
+      name="home"
+      component={Home}
+      options={{
+        tabBarIcon: ({ size, focused }) => {
+          return (
+            <Ionicons
+              name="md-home"
+              size={size}
+              color={focused ? "black": colors.black}
+            />
+          );
+        },
+      }}
+      />
+
 <Tab.Screen    
-    name="Deletar Produto"
+    name="Deletar"
     component={Delete}
     options={{
       tabBarIcon: ({ size, focused }) => {
@@ -95,7 +116,7 @@ const BottomTabNavigator = () => {
   />
   
 <Tab.Screen    
-    name="Editar Produto"
+    name="Editar"
     component={upDate}
     options={{
       tabBarIcon: ({ size, focused }) => {
@@ -110,6 +131,9 @@ const BottomTabNavigator = () => {
       },
     }}
   />
+
+
+
 
     </Navigator>
   );

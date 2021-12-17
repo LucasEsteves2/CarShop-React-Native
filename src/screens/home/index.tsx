@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Alert, Button, Text, StatusBar, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Alert, Button, Text, StatusBar, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { Container, Header, ProdutosTotal, HeaderConteudo, ProdList } from "./style";
 import { RFValue } from "react-native-responsive-fontsize";
-import Usuario from "../../imagens/usuario.png";
+import Logo from "../../imagens/logobar.png";
 import { Produtos } from "../../components/Produtos"
 import { api } from "../../service/api";
 import { ProdutoDTO } from "../../dtos/produtoDTO";
-import { Perfil } from "../perfil";
-
 
 export function Home() {
 
@@ -46,10 +44,9 @@ export function Home() {
 
   }, []);
 
- 
   return (
     <>
-     <StatusBar hidden />
+
       <Container>
         <StatusBar
           barStyle="light-content"
@@ -59,17 +56,16 @@ export function Home() {
         <Header>
 
           <HeaderConteudo>
-            <TouchableOpacity>
-              <Image
-                style={styles.image}
-                source={Usuario}
-                width={RFValue(108)}
-                height={RFValue(12)} />
-            </TouchableOpacity>
+            <Image
+              style={styles.image}
+              source={Logo}
+              width={RFValue(108)}
+              height={RFValue(12)} />
 
             <ProdutosTotal>
-              PRODUTOS
+              produtos:
             </ProdutosTotal>
+
 
           </HeaderConteudo>
         </Header>
@@ -94,11 +90,8 @@ export function Home() {
 
 const styles = StyleSheet.create({
   image: {
-    resizeMode:'contain',
-    marginTop:'3%',
-    marginLeft:'3%',
-    alignSelf:'center',
-    borderRadius:50
-    
+    width: 100,
+    height: 80,
+    resizeMode: 'contain',
   },
 });

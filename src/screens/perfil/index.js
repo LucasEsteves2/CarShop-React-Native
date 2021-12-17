@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Text, View, StyleSheet, Image } from "react-native";
+import { Alert, Button, Text, View, StyleSheet, Image,TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
+import logozita from "../../imagens/usuario.png";
+
 
 export function Perfil() {
   const navigation = useNavigation();
@@ -19,83 +21,104 @@ export function Perfil() {
     loadData();
   }, []);
 
+  async function sair() {
+    await AsyncStorage.removeItem("@serratec:usuario");
+    navigation.navigate("Login");
+   }
 
 console.log('Usuario', usuario);
   return (
-    <View  style={styles.container}>
-      <StatusBar hidden />
-      <ScrollView>
+    <View style={styles.container}>
+      <View style={styles.imageview}>
+        <Image source={logozita} style={styles.imagem} />
+      </View>
+
       <View>
-         <Image source={require('../../imagens/usuario.png')}
-           style={styles.usuarioImage}></Image>
-          <View style={styles.fieldContainer}>
-            <Text style={styles.label}>Nome:</Text>
-            <View style={styles.input}>
-              <Text>{usuario.nome}</Text>
-            </View>
-          </View>
-          <View style={styles.fieldContainer}>
-            <Text style={styles.label}>Email:</Text>
-            <View style={styles.input}>
-              <Text>{usuario.email}</Text>
-            </View>
-          </View>
-          <View style={styles.fieldContainer}>
-            <Text style={styles.label}>CPF:</Text>
-            <View style={styles.input}>
-              <Text>{usuario.cpf}</Text>
-            </View>
-          </View>
-          <Image source={require('../../imagens/img3.png')}
-          style={styles.logoImage}/>
-        </View>
-        </ScrollView>
-    </View>
+        <Text style={styles.title}>Nome:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Usuario"
+          placeholderTextColor="#C3C3C3"
+          value={usuario.nome}
+        />
+      </View>
+
+      <View style={styles.senha}>
+        <Text style={styles.title}>Email:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          placeholderTextColor="#C3C3C3"
+          value={usuario.email}
+
+        />
+      </View>
+
+      <View>
+        <TouchableOpacity style={styles.butao} onPress={sair}>
+          <Text style={styles.btntext}>Sair</Text>
+        </TouchableOpacity>
+
+      </View>
+      </View>
+
+     
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#613FA0",
+    paddingHorizontal: 30,
+    paddingVertical: 70,
   },
-
-
-  usuarioImage:{
-    resizeMode:'contain',
-    marginTop:'3%',
-    marginLeft:'3%',
-    alignSelf:'center',
-    borderRadius:50
+  senha: {
+    paddingVertical: 20,
   },
-
-  logoImage:{
-    alignSelf: "center",
-    resizeMode:'contain',
-    marginTop:'20%'
+  title: {
+    color: "#FFFFFF",
+    fontSize: 9,
+    fontWeight: "bold",
+  },
+  btntext: {
+    fontSize: 11,
+    color: "#FFFFFF",
   },
 
   input: {
     backgroundColor: "#FFFFFF",
     color: "black",
-    padding: '2%',
+    padding: 9,
     borderRadius: 7,
+    marginTop: 3,
     fontSize: 10,
-    width: '80%',
-    marginTop: '2%'
+
+  },
+  butao: {
+    backgroundColor: "#7b42f5",
+    padding: 10,
+    borderRadius: 20,
+    alignItems: "center",
+    marginTop: 3,
+  },
+  imagem: {
+    justifyContent: "center",
+    marginVertical: 20,
+    width: 180,
+    height: 240,
+
+  },
+  imageview: {
+    alignItems: "center",
   },
 
-  fieldContainer:{
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2%',
-    marginTop: '5%'
+  cadastro: {
+    paddingTop: 25,
+    alignItems: "center",
   },
+});
 
-  label:{
-    color: "#FFFFFF",
-    fontSize: 13,
-    fontWeight: "bold",
-  }
-
-})
+   
