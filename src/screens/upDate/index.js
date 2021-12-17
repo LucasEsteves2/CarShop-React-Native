@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image
 } from "react-native";
 import { api } from "../../service/api";
 
@@ -26,46 +27,48 @@ export function upDate() {
   };
 
   async function Atualizar() {
-    await api.put(`/produtos/${id}`, data);
+    await api.put('/produtos/${id}', data);
   }
 
   return (
     <View style={styles.container}>
       <StatusBar hidden />
+      <Image source={require('../../imagens/editar.png')}
+           style={styles.usuarioImage}></Image>
       <TextInput
         placeholder="id"
-        style={styles.textImput}
+        style={styles.textInput}
         onChangeText={(text) => setId(text)}
       />
       <TextInput
         placeholder="nome"
-        style={styles.textImput}
+        style={styles.textInput}
         onChangeText={(text) => setNome(text)}
       />
       <TextInput
         placeholder="descricao"
-        style={styles.textImput}
+        style={styles.textInput}
         onChangeText={(text) => setDescricao(text)}
       />
       <TextInput
         placeholder="imagem"
-        style={styles.textImput}
+        style={styles.textInput}
         onChangeText={(text) => setImagem(text)}
       />
       <TextInput
         placeholder="valor"
-        style={styles.textImput}
+        style={styles.textInput}
         onChangeText={(text) => setValor(text)}
       />
       <TextInput
         placeholder="qtdEstoque"
-        style={styles.textImput}
+        style={styles.textInput}
         onChangeText={(text) => setQtdEstoque(text)}
       />
 
       <TouchableOpacity onPress={Atualizar} style={styles.bntUpdate}>
-        <Text style={{ color: "white", textAlign: "center" }}>
-          Update do produto
+        <Text style={{ color: "#FFFFFF", textAlign: "center" }}>
+          Editar Produto
         </Text>
       </TouchableOpacity>
     </View>
@@ -77,22 +80,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#613FA0",
     alignItems: "center",
-    justifyContent: "center",
   },
-  textImput: {
-    paddingVertical: 10,
-    width: "100%",
-    height: 40,
-    backgroundColor: "white",
-    borderRadius: 20,
+  textInput: {
+    padding: '2%',
+    width: "95%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 7,
     paddingLeft: 10,
-    paddingBottom: 10,
+    marginTop: '4%'
   },
   bntUpdate: {
-    width: "100%",
-    height: 40,
+    width: "50%",
+    padding: '3%',
     backgroundColor: "#7b42f5",
     borderRadius: 20,
     justifyContent: "center",
+    marginTop: '7%'
   },
+
+  usuarioImage:{
+    resizeMode:'contain',
+    alignSelf:'center',
+  }
+
 });
+  

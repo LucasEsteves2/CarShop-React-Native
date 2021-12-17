@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -7,10 +8,11 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  Image
 } from "react-native";
 import { api } from "../../service/api";
 
-export function Cadastrar() {
+export function CadastroProduto() {
 
   const [descricao, setDescricao] = useState("");
   const [foto, setfoto] = useState("");
@@ -47,20 +49,20 @@ export function Cadastrar() {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
+      <Image source={require('../../imagens/editar.png')}
+      style={styles.image}></Image>
       <View>
-        <Text style={styles.title}>Nome:</Text>
         <TextInput
           onChangeText={setNome}
           style={styles.input}
           placeholder="Nome do produto"
           placeholderTextColor="#C3C3C3"
           value={nome}
-
         />
       </View>
 
       <View style={styles.senha}>
-        <Text style={styles.title}>Descrição:</Text>
         <TextInput
           onChangeText={setDescricao}
           style={styles.input}
@@ -71,7 +73,6 @@ export function Cadastrar() {
       </View>
 
       <View style={styles.senha}>
-        <Text style={styles.title}>Valor:</Text>
         <TextInput
           onChangeText={setValor}
           style={styles.input}
@@ -84,7 +85,6 @@ export function Cadastrar() {
       </View>
 
       <View style={styles.senha}>
-        <Text style={styles.title}>Estoque:</Text>
         <TextInput
           onChangeText={setQtdestoque}
           style={styles.input}
@@ -96,21 +96,24 @@ export function Cadastrar() {
         />
       </View>
       <View style={styles.senha}>
-        <Text style={styles.title}>Imagen:</Text>
         <TextInput
           onChangeText={setfoto}
           style={styles.input}
           placeholder="url Imagen"
           placeholderTextColor="#C3C3C3"
           value={foto}
-
         />
       </View>
-      <View>
-        <TouchableOpacity style={styles.butao} onPress={pegarproduto}>
+
+      <View style={styles.butoes}>
+        <TouchableOpacity style={styles.butao1} onPress={pegarproduto}>
           <Text style={styles.btntext}>Cadastrar</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.butao2} onPress={limparForm}>
+          <Text style={styles.btntext}>Limpar</Text>
+        </TouchableOpacity>
       </View>
+      
     </View>
   );
 }
@@ -127,49 +130,50 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#613FA0",
-    paddingHorizontal: 30,
-    paddingVertical: 70,
   },
-  senha: {
-    paddingVertical: 9,
-  },
-  title: {
-    color: "#FFFFFF",
-    fontSize: 9,
-    fontWeight: "bold",
-    paddingVertical: 9,
-  },
+
   btntext: {
     fontSize: 11,
     color: "#FFFFFF",
+    alignSelf: 'center',
   },
 
   input: {
+    padding: '2%',
+    width: "95%",
     backgroundColor: "#FFFFFF",
-    color: "black",
-    padding: 9,
     borderRadius: 7,
-    marginTop: 3,
-    fontSize: 10,
+    alignSelf: 'center',
+    marginTop: '4%'
   },
-  butao: {
-    backgroundColor: "#A370F7",
-    padding: 10,
-    borderRadius: 7,
-    alignItems: "center",
-    marginTop: 20,
+  butoes: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
-  imagem: {
+  butao1: {
+    width: "30%",
+    padding: '3%',
+    backgroundColor: "#7b42f5",
+    borderRadius: 20,
     justifyContent: "center",
-    marginVertical: 20,
-
-    width: 180,
-    height: 150,
+    marginTop: '5%',
+    marginLeft: '15%'
   },
-  imageview: {
-    alignItems: "center",
+  butao2: {
+    width: "30%",
+    padding: '3%',
+    backgroundColor: "#7b42f5",
+    borderRadius: 20,
+    justifyContent: "center",
+    marginTop: '5%',
+    marginRight: '15%'
   },
 
+  image:{
+    resizeMode:'contain',
+    alignSelf:'center',
+  },
+ 
   cadastro: {
     paddingTop: 25,
     alignItems: "center",

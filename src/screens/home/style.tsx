@@ -27,6 +27,7 @@ margin-top:20px;
 margin-right:30px;
 font-size: ${RFValue(13)}px;
 color:white;
+alignSelf:center
 `;
 
 

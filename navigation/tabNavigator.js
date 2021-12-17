@@ -7,7 +7,7 @@ import colors from '../src/styles/colors';
 
 import { Home } from '../src/screens/home';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Cadastrar } from '../src/screens/CadastroProduto';
+import { CadastroProduto } from '../src/screens/CadastroProduto';
 import { Delete } from '../src/screens/Delete';
 import { upDate } from '../src/screens/upDate';
 
@@ -61,7 +61,7 @@ const BottomTabNavigator = () => {
 
   <Tab.Screen    
     name="Adicionar Produto"
-    component={Cadastrar}
+    component={CadastroProduto}
     options={{
       tabBarIcon: ({ size, focused }) => {
         return (
