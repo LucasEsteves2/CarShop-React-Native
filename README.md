@@ -38,6 +38,10 @@
       3: Adicionar Produtos <br>
       4: Deletar Produtos <br>
       5: Listar Produtoss <br>  
+      6: Navegação via TAB <br>  
+      7: Navegação via Stack <br>  
+      7: Context API <br>  
+      8: Crud = API <br>  
   </details>
   
   <details>
