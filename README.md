@@ -17,11 +17,11 @@
  <a href="#author">Autor</a> •
 </p>
 <p align="center" id="description">
-    🚘🚘🚘🚘
+    🚘 (Velocidade 2x)
 
 </p>
 <p align="center" id="design">
-<!--   <img width="300" src="https://github.com/LucasEsteves2/Twitch-Clone--ReactNative/blob/main/src/github/clone2.gif" /> -->
+  <img width="300" src="https://github.com/LucasEsteves2/ProjetoFinal-React-Native/blob/main/assets/video.gif" />
 </p>
   <br>
 
@@ -33,10 +33,11 @@
 <details>
   <summary>✔️ Funcionalidades:</summary>
       <p align="justify">
-      1:  Splash Screen<br>
-      2:  Tela home Twitch <br>
-      3:  Tela Login Twitch <br>
-      4: Autenticação via Api<br>
+      1: Autenticação via Api<br>
+      2: Cadastro de Funcionario <br>
+      3: Adicionar Produtos <br>
+      4: Deletar Produtos <br>
+      5: Listar Produtoss <br>  
   </details>
   
   <details>
