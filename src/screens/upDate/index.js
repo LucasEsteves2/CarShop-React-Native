@@ -27,7 +27,8 @@ export function upDate() {
   };
 
   async function Atualizar() {
-    await api.put('/produtos/${id}', data);
+    await api.put(`/produtos/${id}`, data);
+    alert("Produto Editado")
   }
 
   return (
@@ -57,11 +58,14 @@ export function upDate() {
       />
       <TextInput
         placeholder="valor"
+        keyboardType='numeric'
         style={styles.textInput}
-        onChangeText={(text) => setValor(text)}
+        onChangeText={(text) => setValor(text)
+        }
       />
       <TextInput
         placeholder="qtdEstoque"
+        keyboardType='numeric'
         style={styles.textInput}
         onChangeText={(text) => setQtdEstoque(text)}
       />
